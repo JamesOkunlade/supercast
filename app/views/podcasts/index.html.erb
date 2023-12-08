@@ -1,0 +1,46 @@
+<% if user_signed_in? %> 
+  <%= button_to "Sign out", destroy_user_session_path, method: :delete %> 
+  <%= link_to 'My Profile', profile_path %>
+<% else %>
+  <%= button_to "Sign in", new_user_session_path %> 
+<% end %>
+
+<h5>Hello, <%= current_user.first_name %></h5>
+
+<h3>Genre Related Podcasts</h3>
+<% if @genre_related_podcasts %>
+  <ul>
+    <% @genre_related_podcasts.each do |podcast| %>
+      <li>
+        <h5><%= podcast.title %></h5>
+        Genre: <%= genres_name(podcast) %>
+        <%= image_tag podcast.thumbnail_url, alt: podcast.title %>      
+
+        <% if already_liked?(podcast) %>
+          <%= button_to 'Unlike', podcast_like_path(podcast, find_like(podcast)), method: :delete %>
+        <% else %>
+          <%= button_to 'Like', podcast_likes_path(podcast), method: :post %>
+        <% end %>
+      </li>
+      <%= audio_tag podcast.audio_url, controls: true %>
+    <% end %>
+  </ul>
+<% end %>
+
+<h3>Explore</h3>
+<ul>
+  <% @podcasts.each do |podcast| %>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
+    <li>
+      <h5><%= podcast.title %></h5>
+      Genre: <%= genres_name(podcast) %>
+      <%= image_tag podcast.thumbnail_url, alt: podcast.title %>      
+
+      <% if already_liked?(podcast) %>
+        <%= button_to 'Unlike', podcast_like_path(podcast, find_like(podcast)), method: :delete %>
+      <% else %>
+        <%= button_to 'Like', podcast_likes_path(podcast), method: :post %>
+      <% end %>
+    </li>
+    <%= audio_tag podcast.audio_url, controls: true %>
+  <% end %>
+</ul>
