@@ -1,0 +1,29 @@
+<%= turbo_frame_tag "modal" do %>
+
+<h2>Edit Profile</h2>
+
+<%= form_for @user, url: profile_path, method: :patch do |f| %>
+  <div class="field">
+    <%= f.label :favorite_genres %><br />
+    <% Genre.all.each do |genre| %>
+        <%= check_box_tag 'user[genre_ids][]', genre.id, @user.genres.include?(genre) %>
+        <%= label_tag genre.name %><br />
+    <% end %>
+  </div>
+
+  <div class="field">
+    <%= f.label :preferred_podcast_length %><br />
+    <%= f.number_field :preferred_podcast_length, placeholder: 'In minutes' %>
+  </div>
+
+  <div class="field">
+    <%= f.label :language %><br />
+    <%= f.text_field :language, value: 'English', readonly: true %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit 'Update Profile' %>
+  </div>
+<% end %>
+    
+<% end %>

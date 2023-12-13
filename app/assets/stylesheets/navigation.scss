@@ -1,0 +1,33 @@
+// .nav-tabs .nav-link {
+//     color: #495057;
+//     background-color: #fff;
+//     border: 1px solid #dee2e6;
+//     border-radius: 0.25rem;
+//   }
+  
+//   .nav-tabs .nav-link.active {
+//     color: #fff;
+//     background-color: #007bff;
+//     border-color: #007bff;
+//   }
+  
+
+
+// .navbar.fixed-bottom {
+//     background: #fff; /* or any color you prefer */
+//     box-shadow: 0 -2px 10px rgba(0,0,0,0.2); /* to give some elevation */
+// }
+
+// .nav-link {
+//     color: #757575; /* inactive state */
+// }
+
+// .nav-link.active {
+//     color: #1a73e8; /* active state, Google's blue color */
+// }
+  
+
+.podcast-link {
+    text-decoration: none; /* Removes underline */
+    color: inherit; /* Inherits color from parent instead of default link color */
+}

@@ -1,0 +1,49 @@
+<div class="container p-0 m-0 mb-5">
+  <div class="podcast-item mb-3 border-bottom p-3">
+    <div class="row">
+      <div class="col-3">
+        <%= image_tag @podcast.thumbnail_url, alt: @podcast.title, class: "img-fluid rounded-start" %>
+      </div>
+      <div class="col-5 pt-3">
+        <h6 class="p-0 m-0"><%= @podcast.host %></h6>
+        <%= time_ago_in_words(@podcast.created_at) %> ago
+      </div>
+    </div>
+    <div class="row p-3">
+      Genre: <%= genres_name(@podcast) %>
+    </div>
+
+    <div class="row p-3">
+      <div class="col-12">
+        <%= audio_tag @podcast.audio_url, controls: true %>
+      </div>
+    </div>
+
+    <div class="row mt-2">
+      <div class="col-12">
+        <h5><%= @podcast.title %></h5>
+        <p><%= @podcast.description %></p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-4 p-2 border border-2 rounded-3">
+        <i class="bi bi-play-circle"></i>
+        <%= (@podcast.duration / 60).to_i %> mins
+      </div>
+      <div class="col-4 p-2">
+        <% if already_liked?(@podcast) %>
+          <i class="bi bi-heart"></i>
+          Unlike <%= @podcast.likes_count %>
+        <% else %>
+          <i class="bi bi-heart"></i>
+          Like <%= @podcast.likes_count %>
+        <% end %>
+      </div>
+      <div class="col-4 p-2">
+        <i class="bi bi-plus-square"></i>
+        Queue
+      </div>
+    </div>
+  </div>
+</div>

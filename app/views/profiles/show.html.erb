@@ -1,0 +1,18 @@
+<h2><%= @user.first_name %>'s Profile</h2>
+<p><strong>Favorite Genres:</strong> 
+    <% @user.genres.each do |genre| %>
+        <%= genre.name %>
+    <% end %>
+</p>
+
+<p><strong>Preferred Podcast Length:</strong> <%= @user.preferred_podcast_length %> mins</p>
+<p><strong>Language:</strong> <%= @user.language %></p>
+
+
+<h3>Favorite Podcasts</h3>
+
+<h3>Listening History</h3>
+
+<h3>Recommended Podcasts</h3>
+
+<%= link_to 'Edit Profile', edit_profile_path, data: { turbo_frame: "modal" } %>
