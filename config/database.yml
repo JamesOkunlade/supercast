@@ -79,6 +79,7 @@ test:
 #
 production:
   <<: *default
-  database: supercast_production
-  username: supercast
+  host: supercast-database-1.c5vlsies2uyq.us-east-1.rds.amazonaws.com
+  database: supercast-database-1
+  username: postgres
   password: <%= ENV["SUPERCAST_DATABASE_PASSWORD"] %>

@@ -1,24 +1,65 @@
-# README
+# Supercast. This is a Work in Progress with many obvious improvement.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Introduction
 
-Things you may want to cover:
+A personalized podcast recommendation engine that suggests podcasts based on user preferences, listening history, and popular genres.
 
-* Ruby version
+## Requirements
 
-* System dependencies
+- Ruby version 3.2.2
 
-* Configuration
+- Rails version 7.0.8
 
-* Database creation
+- Postgres
 
-* Database initialization
+- Listen Notes API
 
-* How to run the test suite
+## Installation
 
-* Services (job queues, cache servers, search engines, etc.)
+- Visit Listen Notes to generate api key
 
-* Deployment instructions
+- Set the key in a .env file in the application root
+    ```
+    LISTEN_NOTES_API_KEY='key'
+    ```
 
-* ...
+- Clone the repository and get inside it:
+
+```
+git clone git@github.com:JamesOkunlade/supercast.git
+
+cd supercast
+```
+
+- Install all gems:
+
+```
+bundle install
+```
+
+- Create a postgres database:
+
+```
+rails db:create
+```
+
+- Migrate database and run the rake for updating genres and podcasts in that order.
+
+```
+rails db:migrate
+
+rails genres:update
+rails podcast_recommendations:generate
+```
+
+- Start the server
+
+```
+rails s
+```
+
+## Author
+
+James Okunlade
+
+- [Github profile](https://github.com/JamesOkunlade)
