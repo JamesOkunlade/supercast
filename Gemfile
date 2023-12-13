@@ -2,6 +2,8 @@ source "https://rubygems.org"
 
 ruby "3.2.2"
 
+gem 'dotenv-rails', groups: [:development, :test]
+
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.1.2"
 
@@ -53,10 +55,14 @@ group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri windows ]
   gem 'rspec-rails', '~> 6.1'
+  gem 'cucumber-rails', require: false
+  gem 'selenium-webdriver', '~> 4.16'
+  gem 'capybara', '~> 3.39', '>= 3.39.2'
 end
 
 group :development do
   gem 'annotate', '~> 3.2'
+  gem 'brakeman', '~> 6.1'
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
 

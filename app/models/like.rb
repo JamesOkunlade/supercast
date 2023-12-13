@@ -20,5 +20,5 @@
 #
 class Like < ApplicationRecord
   belongs_to :user
-  belongs_to :podcast
+  belongs_to :podcast, counter_cache: true
 end

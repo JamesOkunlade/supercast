@@ -13,14 +13,15 @@ class ProfilesController < ApplicationController
  
     def update
       ActiveRecord::Base.transaction do
-        @user.update(profile_params)
-        @user.user_genres.destroy_all
-        params[:user][:genre_ids].each do |genre_id|
-          UserGenre.create(user_id: @user.id, genre_id: genre_id)
-        end
+        @user.update!(profile_params)
+        update_user_genres
         redirect_to profile_path, notice: 'Profile was successfully updated.'
-      rescue ActiveRecord::RecordInvalid
-        render :edit
+      rescue ActiveRecord::RecordInvalid => e
+        flash.now[:alert] = "Update failed: #{e.message}"
+        render :edit, status: :unprocessable_entity
+      rescue => e # Catch other unexpected exceptions
+        flash.now[:alert] = "An unexpected error occurred: #{e.message}"
+        render :edit, status: :internal_server_error
       end
     end
  
@@ -31,7 +32,15 @@ class ProfilesController < ApplicationController
     end
  
     def profile_params
-     params.require(:user).permit(:preferred_podcast_length, :language)
+     params.require(:user).permit(:preferred_podcast_length, :language, genre_ids: [])
+    end
+
+    def update_user_genres
+      @user.user_genres.destroy_all
+      genre_ids = params[:user][:genre_ids] || []
+      genre_ids.each do |genre_id|
+        @user.user_genres.create!(genre_id: genre_id)
+      end
     end
  end
  

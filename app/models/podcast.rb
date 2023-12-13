@@ -8,6 +8,7 @@
 #  duration                :integer
 #  genres                  :integer          default([]), is an Array
 #  host                    :string
+#  likes_count             :integer          default(0)
 #  thumbnail_url           :string
 #  title                   :string
 #  created_at              :datetime         not null

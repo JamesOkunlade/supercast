@@ -10,12 +10,11 @@ namespace :podcast_recommendations do
     min_podcast_length = User.pluck(:preferred_podcast_length).min
     max_podcast_length = User.pluck(:preferred_podcast_length).max
 
-    # api_key = ENV['LISTEN_NOTES_API_KEY']
-    api_key = '88f5c30deccc44a4a6ef2f74f71f6d84'
+    api_key = ENV['LISTEN_NOTES_API_KEY']
     service = ListenNotesService.new(api_key)
 
     service.fetch_and_update_podcasts(
-        'Africa',
+        'Family and Career',
         type: 'episode', 
         offset: 0, 
         len_min: min_podcast_length, 

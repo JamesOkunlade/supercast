@@ -1,0 +1,53 @@
+<div class="container p-0 m-0">
+  <h3>For you</h3>
+  <% if @genre_related_podcasts.present? %>
+    <div class="podcasts-container">
+      <% @genre_related_podcasts.each do |podcast| %>
+        <!-- Example structure for a podcast card, repeat for each podcast -->
+        <div class="podcast-item mb-3 border-bottom p-3">
+          <div class="row">
+            <div class="col-3">
+              <%= image_tag podcast.thumbnail_url, alt: podcast.title, class: "img-fluid rounded-start" %>
+            </div>
+            <div class="col-5 pt-3">
+              <h6 class="p-0 m-0"><%= truncate(podcast.host, length: 15) %></h6>
+              <%= time_ago_in_words(podcast.created_at) %> ago
+            </div>
+          </div>
+
+          <div class="row mt-2">
+            <div class="col-12">
+              <h5><%= link_to podcast.title, podcast_path(podcast), class: "text-decoration-none" %></h5>
+              <p><%= truncate(podcast.description, length: 100) %></p>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-4 p-2 border border-2 rounded-3">
+              <i class="bi bi-play-circle"></i>
+              <%= (podcast.duration / 60).to_i %> mins
+            </div>
+            <div class="col-4 p-2">
+              <% if already_liked?(podcast) %>
+                <i class="bi bi-heart"></i>
+                Unlike <%= podcast.likes_count %>
+              <% else %>
+                <i class="bi bi-heart"></i>
+                Like <%= podcast.likes_count %>
+              <% end %>
+            </div>
+            <div class="col-4 p-2">
+              <i class="bi bi-plus-square"></i>
+              Queue
+            </div>
+          </div>
+
+
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+    <p>There are no podcasts for you yet, please update your preferences!</p>
+    <%= link_to 'My Profile', profile_path %>
+  <% end %>
+</div>

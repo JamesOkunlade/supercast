@@ -34,5 +34,5 @@ class User < ApplicationRecord
   has_many :liked_podcasts, through: :likes, source: :podcast
 
   # Validations
-  validates_presence_of :first_name, :last_name
+  validates_presence_of :first_name, :last_name, length: { maximum: 50 }
 end

@@ -1,0 +1,15 @@
+<h3>Explore</h3>
+<% if @podcasts %>
+  <div class="list-group text-center">
+    <% @podcasts.each do |podcast| %>
+      <div class="list-group-item p-3">
+        <h5><%= link_to podcast.title, podcast_path(podcast), class: "mb-1 text-decoration-none" %></h5>
+
+        <p class="mb-1">Genre: <%= genres_name(podcast) %></p>
+        <%= image_tag podcast.thumbnail_url, alt: podcast.title, class: "img-fluid rounded" %>
+      </div>
+    <% end %>
+  </div>
+<% else %>
+  <p>There are no podcasts to explore.</p>
+<% end %>
