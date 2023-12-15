@@ -57,6 +57,12 @@ rails podcast_recommendations:generate
 ```
 rails s
 ```
+## Live deployment on AWS
+
+- [supercast](https://ec2-3-91-60-62.compute-1.amazonaws.com/) Please check the demo if the server is not up 
+
+## Demo
+Here is a link to the demo of the app https://www.loom.com/share/0f52170667bd4d28815ce29cb23ebd29?sid=20c683d8-6612-48ef-9763-c4e0400fbae1
 
 ## Author
 
